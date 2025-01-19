@@ -1,6 +1,7 @@
 {
-  "name": "my-v0-project",
+  "name": "router-structure-visualizer",
   "version": "0.1.0",
+  "description": "Router Structure Visualizer",
   "private": true,
   "scripts": {
     "dev": "next dev",

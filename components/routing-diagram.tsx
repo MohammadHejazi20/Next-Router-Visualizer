@@ -13,13 +13,17 @@ import {
   FileCode,
   FolderDot,
   Edit2,
+  Trash2,
+  X,
+  FileText,
+  ChevronDown,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Node {
   id: string;
-  type: "folder" | "file";
+  type: "folder" | "file" | "page" | "group";
   name: string;
   children?: Node[];
   route?: string;
@@ -34,15 +38,47 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
   const [nodes, setNodes] = useState<Node[]>(initialNodes);
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
   const [editingNode, setEditingNode] = useState<string | null>(null);
+  const [collapsedNodes, setCollapsedNodes] = useState<Set<string>>(new Set());
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case "active":
-        return "text-blue-400";
+        return "text-blue-400 dark:text-blue-300";
       case "group":
-        return "text-purple-400";
+        return "text-purple-400 dark:text-purple-300";
       default:
         return "text-muted-foreground";
+    }
+  };
+
+  const getNodeIcon = (node: Node) => {
+    switch (node.type) {
+      case "folder":
+        return (
+          <Folder
+            className={cn("w-4 h-4", getStatusColor(node.status || "default"))}
+          />
+        );
+      case "file":
+        return (
+          <FileCode
+            className={cn("w-4 h-4", getStatusColor(node.status || "default"))}
+          />
+        );
+      case "page":
+        return (
+          <FileText
+            className={cn("w-4 h-4", getStatusColor(node.status || "default"))}
+          />
+        );
+      case "group":
+        return <FolderDot className={cn("w-4 h-4", getStatusColor("group"))} />;
+      default:
+        return (
+          <File
+            className={cn("w-4 h-4", getStatusColor(node.status || "default"))}
+          />
+        );
     }
   };
 
@@ -62,9 +98,23 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
     return findPath(nodes).replace(/\/app/, "");
   };
 
+  const toggleCollapse = (nodeId: string) => {
+    setCollapsedNodes((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(nodeId)) {
+        newSet.delete(nodeId);
+      } else {
+        newSet.add(nodeId);
+      }
+      return newSet;
+    });
+  };
+
   const renderNode = (node: Node, level: number = 0) => {
     const isSelected = selectedNode === node.id;
     const isEditing = editingNode === node.id;
+    const isCollapsed = collapsedNodes.has(node.id);
+    const hasChildren = node.children && node.children.length > 0;
 
     return (
       <motion.div
@@ -76,23 +126,30 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
       >
         <div
           className={cn(
-            "flex items-center gap-2 p-3 rounded-lg transition-all",
+            "flex items-center gap-2 p-2 rounded-lg transition-all group",
             isSelected ? "bg-accent/80 shadow-lg" : "hover:bg-accent/40",
             level > 0 && "ml-6"
           )}
           onClick={() => setSelectedNode(node.id)}
         >
-          {node.type === "folder" ? (
-            node.status === "group" ? (
-              <FolderDot
-                className={cn("w-4 h-4", getStatusColor(node.status))}
-              />
-            ) : (
-              <Folder className={cn("w-4 h-4", getStatusColor(node.status ? "active" : "default"))} />
-            )
-          ) : (
-            <FileCode className={cn("w-4 h-4", getStatusColor(node.status ? "active" : "default"))} />
+          {hasChildren && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-6 w-6 p-0"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleCollapse(node.id);
+              }}
+            >
+              {isCollapsed ? (
+                <ChevronRight className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
+            </Button>
           )}
+          {getNodeIcon(node)}
           {isEditing ? (
             <Input
               value={node.name}
@@ -124,23 +181,50 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
               <span
                 className={cn(
                   "text-sm font-medium",
-                  node.status === "group" && "text-purple-400",
-                  node.status === "active" && "text-blue-400"
+                  node.status === "group" &&
+                    "text-purple-200 dark:text-purple-300",
+                  node.status === "active" && "text-blue-200 dark:text-blue-300"
                 )}
               >
                 {node.name}
               </span>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="p-0 h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setEditingNode(node.id);
-                }}
-              >
-                <Edit2 className="w-3 h-3" />
-              </Button>
+              <div className="ml-auto flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-6 w-6 p-0"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setEditingNode(node.id);
+                  }}
+                >
+                  <Edit2 className="w-3 h-3" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-6 w-6 p-0"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    // Implement delete functionality
+                  }}
+                >
+                  <Trash2 className="w-3 h-3" />
+                </Button>
+                {(node.type === "folder" || node.type === "group") && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 w-6 p-0"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      addNode(node.id);
+                    }}
+                  >
+                    <Plus className="w-3 h-3" />
+                  </Button>
+                )}
+              </div>
             </>
           )}
           {node.route && (
@@ -153,8 +237,8 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
                   exit={{ opacity: 0, x: -20 }}
                 >
                   <Card className="flex items-center gap-2 px-4 py-2 bg-accent/50 backdrop-blur-sm border-accent-foreground/20">
-                    <Globe className="w-4 h-4 text-blue-400" />
-                    <span className="text-sm font-mono text-blue-200">
+                    <Globe className="w-4 h-4 text-blue-400 dark:text-blue-300" />
+                    <span className="text-sm font-mono text-blue-200 dark:text-blue-300">
                       {node.route}
                     </span>
                   </Card>
@@ -163,7 +247,7 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
             </>
           )}
         </div>
-        {node.children && node.children.length > 0 && (
+        {node.children && node.children.length > 0 && !isCollapsed && (
           <div className="mt-1 relative">
             <div className="absolute left-3 top-0 bottom-0 w-px bg-accent/30" />
             {node.children.map((child) => renderNode(child, level + 1))}
@@ -174,7 +258,7 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
   };
 
   const addNode = (parentId: string | null) => {
-    const newFolder: Node = {
+    const newNode: Node = {
       id: Math.random().toString(),
       type: "folder",
       name: "New Folder",
@@ -182,15 +266,15 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
       children: [
         {
           id: Math.random().toString(),
-          type: "file",
+          type: "page",
           name: "page.tsx",
-          status: "default",
+          status: "active",
         },
       ],
     };
 
     if (!parentId) {
-      setNodes([...nodes, newFolder]);
+      setNodes([...nodes, newNode]);
       return;
     }
 
@@ -199,7 +283,7 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
         if (node.id === parentId) {
           return {
             ...node,
-            children: [...(node.children || []), newFolder],
+            children: [...(node.children || []), newNode],
           };
         }
         if (node.children) {
@@ -229,11 +313,11 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
         <Button
           variant="outline"
           size="sm"
-          onClick={() => addNode(selectedNode)}
+          onClick={() => addNode(null)}
           className="gap-2 hover:bg-accent/50 transition-colors"
         >
           <Plus className="w-4 h-4" />
-          Add Page
+          Add Root Node
         </Button>
       </div>
       <div className="space-y-2 relative">
@@ -241,14 +325,18 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
         {nodes.map((node) => renderNode(node))}
       </div>
       <div className="mt-6 pt-6 border-t border-accent/20">
-        <div className="flex gap-6 text-sm text-muted-foreground">
+        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
-            <FolderDot className="w-4 h-4 text-purple-400" />
+            <FolderDot className="w-4 h-4 text-purple-400 dark:text-purple-300" />
             <span>Route Groups</span>
           </div>
           <div className="flex items-center gap-2">
-            <Folder className="w-4 h-4 text-blue-400" />
-            <span>Active Routes</span>
+            <Folder className="w-4 h-4 text-blue-400 dark:text-blue-300" />
+            <span>Folders</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <FileText className="w-4 h-4 text-blue-400 dark:text-blue-300" />
+            <span>Pages</span>
           </div>
           <div className="flex items-center gap-2">
             <FileCode className="w-4 h-4 text-muted-foreground" />
@@ -258,7 +346,7 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
         {selectedNode && (
           <div className="mt-4 p-4 bg-accent/20 rounded-lg">
             <h3 className="text-sm font-semibold mb-2">Selected Node Path:</h3>
-            <p className="text-sm font-mono text-blue-200">
+            <p className="text-sm font-mono text-blue-200 dark:text-blue-300">
               {getNodePath(selectedNode)}
             </p>
           </div>
