@@ -6,6 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import { FileRouteVisualizer } from "./file-route-visualizer";
 import { exampleStructures } from "@/lib/example-structures";
+import { Footer } from "./footer";
 
 export function RoutingVisualizer() {
   const [selectedStructure, setSelectedStructure] = useState<
@@ -13,8 +14,8 @@ export function RoutingVisualizer() {
   >(null);
 
   return (
-    <div className="min-h-screen grid-pattern p-4 md:p-8">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen grid-pattern p-4 md:p-8 flex flex-col">
+      <div className="max-w-5xl mx-auto w-full flex-1">
         <header className="mb-8">
           <h1 className="text-2xl md:text-3xl font-bold text-[#E0E0E0] mb-2">
             Next.js App Router Structure
@@ -31,9 +32,7 @@ export function RoutingVisualizer() {
               <Card
                 key={key}
                 className="bg-[#1E1E1E] border border-[#333333] hover:border-[#4A90E2] transition-colors p-4 cursor-pointer"
-                onClick={() =>
-                  setSelectedStructure(key as keyof typeof exampleStructures)
-                }
+                onClick={() => setSelectedStructure(key)}
               >
                 <h2 className="text-lg font-medium mb-2">{structure.name}</h2>
                 <p className="text-[#A0A0A0] text-sm">
@@ -59,6 +58,8 @@ export function RoutingVisualizer() {
           </div>
         )}
       </div>
+
+      <Footer />
     </div>
   );
 }
