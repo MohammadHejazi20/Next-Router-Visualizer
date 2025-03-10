@@ -1,5 +1,5 @@
-import { WelcomePage } from "@/components/welcome-page";
+import { RoutingVisualizer } from "@/components/routing-visualizer";
 
 export default function Home() {
-  return <WelcomePage />;
+  return <RoutingVisualizer />;
 }

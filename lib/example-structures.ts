@@ -1,178 +1,284 @@
 export const exampleStructures = {
   basic: {
-    name: 'Basic Structure',
-    description: 'A simple Next.js app with a few pages',
+    name: "Basic App Router Structure",
+    description: "A simple Next.js app with basic routing",
     nodes: [
       {
-        id: '1',
-        type: 'folder',
-        name: 'app',
-        status: 'default',
+        id: "1",
+        type: "folder",
+        name: "app",
         children: [
           {
-            id: '2',
-            type: 'file',
-            name: 'layout.tsx',
-            status: 'default'
+            id: "2",
+            type: "file",
+            name: "layout.js",
           },
           {
-            id: '3',
-            type: 'file',
-            name: 'page.tsx',
-            status: 'active',
-            route: '/'
+            id: "3",
+            type: "page",
+            name: "page.js",
+            route: "/",
+            status: "active",
           },
           {
-            id: '4',
-            type: 'folder',
-            name: 'about',
-            status: 'active',
+            id: "4",
+            type: "folder",
+            name: "blog",
             children: [
               {
-                id: '5',
-                type: 'file',
-                name: 'page.tsx',
-                status: 'default'
-              }
+                id: "5",
+                type: "page",
+                name: "page.js",
+                route: "/blog",
+                status: "active",
+              },
             ],
-            route: '/about'
           },
-          {
-            id: '6',
-            type: 'folder',
-            name: 'blog',
-            status: 'active',
-            children: [
-              {
-                id: '7',
-                type: 'file',
-                name: 'page.tsx',
-                status: 'default'
-              }
-            ],
-            route: '/blog'
-          }
-        ]
-      }
-    ]
+        ],
+      },
+    ],
   },
-  advanced: {
-    name: 'Advanced Structure',
-    description: 'A more complex Next.js app with nested routes and route groups',
+  marketing: {
+    name: "Marketing & Shop Structure",
+    description: "Example with route groups for marketing and shop sections",
     nodes: [
       {
-        id: '1',
-        type: 'folder',
-        name: 'app',
-        status: 'default',
+        id: "1",
+        type: "folder",
+        name: "app",
         children: [
           {
-            id: '2',
-            type: 'file',
-            name: 'layout.tsx',
-            status: 'default'
+            id: "2",
+            type: "file",
+            name: "layout.js",
           },
           {
-            id: '3',
-            type: 'file',
-            name: 'page.tsx',
-            status: 'active',
-            route: '/'
+            id: "3",
+            type: "page",
+            name: "page.js",
+            route: "/",
+            status: "active",
           },
           {
-            id: '4',
-            type: 'folder',
-            name: '(marketing)',
-            status: 'group',
+            id: "4",
+            type: "group",
+            name: "(marketing)",
+            status: "group",
             children: [
               {
-                id: '5',
-                type: 'folder',
-                name: 'about',
-                status: 'active',
+                id: "5",
+                type: "folder",
+                name: "about",
                 children: [
                   {
-                    id: '6',
-                    type: 'file',
-                    name: 'page.tsx',
-                    status: 'default'
-                  }
+                    id: "6",
+                    type: "page",
+                    name: "page.js",
+                    route: "/about",
+                    status: "active",
+                  },
                 ],
-                route: '/about'
               },
               {
-                id: '7',
-                type: 'folder',
-                name: 'blog',
-                status: 'active',
+                id: "7",
+                type: "folder",
+                name: "blog",
                 children: [
                   {
-                    id: '8',
-                    type: 'file',
-                    name: 'page.tsx',
-                    status: 'default'
-                  }
+                    id: "8",
+                    type: "page",
+                    name: "page.js",
+                    route: "/blog",
+                    status: "active",
+                  },
                 ],
-                route: '/blog'
-              }
-            ]
+              },
+            ],
           },
           {
-            id: '9',
-            type: 'folder',
-            name: '(shop)',
-            status: 'group',
+            id: "9",
+            type: "group",
+            name: "(shop)",
+            status: "group",
             children: [
               {
-                id: '10',
-                type: 'folder',
-                name: 'products',
-                status: 'active',
+                id: "10",
+                type: "folder",
+                name: "account",
                 children: [
                   {
-                    id: '11',
-                    type: 'file',
-                    name: 'page.tsx',
-                    status: 'default'
+                    id: "11",
+                    type: "page",
+                    name: "page.js",
+                    route: "/account",
+                    status: "active",
                   },
+                ],
+              },
+              {
+                id: "12",
+                type: "folder",
+                name: "products",
+                children: [
                   {
-                    id: '12',
-                    type: 'folder',
-                    name: '[productId]',
-                    status: 'active',
+                    id: "13",
+                    type: "page",
+                    name: "page.js",
+                    route: "/products",
+                    status: "active",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  parallel: {
+    name: "Parallel Routes",
+    description: "Example of parallel routes with @folder convention",
+    nodes: [
+      {
+        id: "1",
+        type: "folder",
+        name: "app",
+        children: [
+          {
+            id: "2",
+            type: "file",
+            name: "layout.js",
+          },
+          {
+            id: "3",
+            type: "page",
+            name: "page.js",
+            route: "/",
+            status: "active",
+          },
+          {
+            id: "4",
+            type: "folder",
+            name: "dashboard",
+            children: [
+              {
+                id: "5",
+                type: "file",
+                name: "layout.js",
+              },
+              {
+                id: "6",
+                type: "page",
+                name: "page.js",
+                route: "/dashboard",
+                status: "active",
+              },
+              {
+                id: "7",
+                type: "folder",
+                name: "@analytics",
+                children: [
+                  {
+                    id: "8",
+                    type: "page",
+                    name: "page.js",
+                    route: "/dashboard/@analytics",
+                    status: "active",
+                  },
+                ],
+              },
+              {
+                id: "9",
+                type: "folder",
+                name: "@team",
+                children: [
+                  {
+                    id: "10",
+                    type: "page",
+                    name: "page.js",
+                    route: "/dashboard/@team",
+                    status: "active",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  intercepting: {
+    name: "Intercepting Routes",
+    description: "Example of intercepting routes with (.) convention",
+    nodes: [
+      {
+        id: "1",
+        type: "folder",
+        name: "app",
+        children: [
+          {
+            id: "2",
+            type: "file",
+            name: "layout.js",
+          },
+          {
+            id: "3",
+            type: "page",
+            name: "page.js",
+            route: "/",
+            status: "active",
+          },
+          {
+            id: "4",
+            type: "folder",
+            name: "blog",
+            children: [
+              {
+                id: "5",
+                type: "page",
+                name: "page.js",
+                route: "/blog",
+                status: "active",
+              },
+              {
+                id: "6",
+                type: "folder",
+                name: "[slug]",
+                children: [
+                  {
+                    id: "7",
+                    type: "page",
+                    name: "page.js",
+                    route: "/blog/[slug]",
+                    status: "active",
+                  },
+                ],
+              },
+              {
+                id: "8",
+                type: "folder",
+                name: "(.)preview",
+                children: [
+                  {
+                    id: "9",
+                    type: "folder",
+                    name: "[slug]",
                     children: [
                       {
-                        id: '13',
-                        type: 'file',
-                        name: 'page.tsx',
-                        status: 'default'
-                      }
+                        id: "10",
+                        type: "page",
+                        name: "page.js",
+                        route: "/blog/preview/[slug]",
+                        status: "active",
+                      },
                     ],
-                    route: '/products/[productId]'
-                  }
+                  },
                 ],
-                route: '/products'
               },
-              {
-                id: '14',
-                type: 'folder',
-                name: 'cart',
-                status: 'active',
-                children: [
-                  {
-                    id: '15',
-                    type: 'file',
-                    name: 'page.tsx',
-                    status: 'default'
-                  }
-                ],
-                route: '/cart'
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-}
-
+            ],
+          },
+        ],
+      },
+    ],
+  },
+};

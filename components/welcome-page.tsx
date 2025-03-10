@@ -9,9 +9,9 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 export function WelcomePage() {
-  const [selectedStructure, setSelectedStructure] = useState<string | null>(
-    null
-  );
+  const [selectedStructure, setSelectedStructure] = useState<
+    keyof typeof exampleStructures | null
+  >(null);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -48,7 +48,9 @@ export function WelcomePage() {
               {Object.entries(exampleStructures).map(([key, structure]) => (
                 <Button
                   key={key}
-                  onClick={() => setSelectedStructure(key)}
+                  onClick={() =>
+                    setSelectedStructure(key as keyof typeof exampleStructures)
+                  }
                   variant="outline"
                   className="h-auto py-4 px-6 text-left"
                 >

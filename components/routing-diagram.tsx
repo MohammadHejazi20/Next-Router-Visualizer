@@ -1,25 +1,24 @@
 "use client";
 
-import { useState } from "react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-  Globe,
-  File,
-  Folder,
-  ChevronRight,
-  Plus,
-  FileCode,
-  FolderDot,
-  Edit2,
-  Trash2,
-  X,
-  FileText,
-  ChevronDown,
-} from "lucide-react";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  ChevronDown,
+  ChevronRight,
+  Edit2,
+  File,
+  FileCode,
+  FileText,
+  Folder,
+  FolderDot,
+  Globe,
+  Plus,
+  Trash2,
+} from "lucide-react";
+import { useState } from "react";
 
 interface Node {
   id: string;
@@ -83,7 +82,7 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
   };
 
   const getNodePath = (nodeId: string): string => {
-    const findPath = (nodes: Node[], path: string = ""): string => {
+    const findPath = (nodes: Node[], path = ""): string => {
       for (const node of nodes) {
         if (node.id === nodeId) {
           return `${path}/${node.name}`;
@@ -110,7 +109,7 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
     });
   };
 
-  const renderNode = (node: Node, level: number = 0) => {
+  const renderNode = (node: Node, level = 0) => {
     const isSelected = selectedNode === node.id;
     const isEditing = editingNode === node.id;
     const isCollapsed = collapsedNodes.has(node.id);
