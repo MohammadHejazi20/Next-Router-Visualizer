@@ -1,5 +1,8 @@
 {
   "name": "router-structure-visualizer",
+  "author": {
+    "name": "Mohammad Hejazi"
+  },
   "version": "0.1.0",
   "description": "Router Structure Visualizer",
   "private": true,
