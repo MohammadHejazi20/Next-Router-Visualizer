@@ -1,12 +1,12 @@
 "use client";
 
+import { FileRouteVisualizer } from "@/components/file-route-visualizer";
+import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { exampleStructures } from "@/lib/example-structures";
 import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
-import { FileRouteVisualizer } from "./file-route-visualizer";
-import { exampleStructures } from "@/lib/example-structures";
-import { Footer } from "./footer";
 
 export function RoutingVisualizer() {
   const [selectedStructure, setSelectedStructure] = useState<
@@ -47,7 +47,7 @@ export function RoutingVisualizer() {
               variant="outline"
               size="sm"
               onClick={() => setSelectedStructure(null)}
-              className="mb-6 bg-[#1E1E1E] border-[#333333] hover:bg-[#2A2A2A] text-[#E0E0E0]"
+              className="mb-6 bg-[#1E1E1E] border-[#333333] hover:bg-[#2A2A2A] hover:border-[#4A90E2] text-[#E0E0E0]"
             >
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to examples
