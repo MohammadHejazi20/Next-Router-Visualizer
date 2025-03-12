@@ -10,7 +10,7 @@ type BaseNode = {
 const generateUniqueId = (): string => {
   return Math.random().toString(36).substring(7);
 };
-
+// TODO:
 const createNewNode = (type: Node["type"], parentId: string | null): Node => {
   const baseNode: BaseNode = {
     id: generateUniqueId(),
