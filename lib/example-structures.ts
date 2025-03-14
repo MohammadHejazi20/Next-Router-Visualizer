@@ -281,4 +281,9 @@ export const exampleStructures = {
       },
     ],
   },
+  import: {
+    name: "Import Your Own Structure",
+    description: "Generate and import your Next.js app structure",
+    component: "ImportStructure",
+  },
 };
