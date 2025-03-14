@@ -1,0 +1,25 @@
+{
+  "name": "Generated App Structure",
+  "description": "Automatically generated Next.js app structure",
+  "nodes": [
+    {
+      "id": "root",
+      "type": "folder",
+      "name": "app",
+      "children": [
+        {
+          "id": "5DD8CC20-AC41-49AC-920A-92438DAD2A9C",
+          "type": "file",
+          "name": "layout.tsx"
+        },
+        {
+          "id": "19C2DA55-1E8B-4DC0-A44F-3B7FB4178DE9",
+          "type": "page",
+          "name": "page.tsx",
+          "route": "",
+          "status": "active"
+        }
+      ]
+    }
+  ]
+}

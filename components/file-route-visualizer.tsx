@@ -96,7 +96,12 @@ export function FileRouteVisualizer({
     setEditingNode(null);
   };
 
-  const renderNode = (node: Node, level = 0, isLast = true) => {
+  const renderNode = (
+    node: Node,
+    level = 0,
+    isLast = true,
+    parentNode?: Node
+  ) => {
     const isExpanded = expandedNodes.has(node.id);
     const hasChildren = node.children && node.children.length > 0;
     const isActive = node.status === "active" || node.type === "page";
@@ -221,7 +226,8 @@ export function FileRouteVisualizer({
                 renderNode(
                   child,
                   level + 1,
-                  index === node.children!.length - 1
+                  index === node.children!.length - 1,
+                  node
                 )
               )}
             </motion.div>
