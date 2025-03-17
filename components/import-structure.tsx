@@ -13,6 +13,7 @@ import {
   Clock,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import UploadComingSoon from "./upload-coming-soon";
 
 export function ImportStructure() {
   const [copied, setCopied] = useState(false);
@@ -218,6 +219,8 @@ echo "App structure saved to $OUTPUT_FILE"`;
           .
         </p>
       </div>
+
+      <UploadComingSoon />
     </div>
   );
 }

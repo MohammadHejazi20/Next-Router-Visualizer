@@ -5,11 +5,9 @@ import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { exampleStructures } from "@/lib/example-structures";
-import { Node } from "@/lib/nodeUtils";
 import { ArrowLeft, FileJson, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { ImportStructure } from "./import-structure";
-import UploadComingSoon from "./upload-coming-soon";
 
 export function RoutingVisualizer() {
   const [selectedStructure, setSelectedStructure] = useState<string | null>(
@@ -100,8 +98,6 @@ export function RoutingVisualizer() {
             {renderSelectedContent()}
           </div>
         )}
-
-        <UploadComingSoon />
       </div>
 
       <Footer />
