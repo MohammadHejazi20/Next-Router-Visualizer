@@ -10,7 +10,6 @@ import Link from "next/link";
 import { useState } from "react";
 import { ImportStructure } from "./import-structure";
 import Show from "./show";
-import UploadComingSoon from "./upload-coming-soon";
 
 export function RoutingVisualizer() {
   const [selectedStructure, setSelectedStructure] = useState<string | null>(
@@ -114,8 +113,6 @@ export function RoutingVisualizer() {
             {renderSelectedContent()}
           </Show.Else>
         </Show>
-
-        <UploadComingSoon />
       </div>
 
       <Footer />
