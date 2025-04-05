@@ -1,4 +1,24 @@
-export const exampleStructures = {
+export const exampleStructures: {
+  [key: string]:
+    | {
+        name: string;
+        description?: string;
+        component?: string;
+        nodes: {
+          id: string;
+          type: "folder" | "file" | "page" | "group";
+          name: string;
+          route?: string;
+          status?: "active" | "group";
+          children?: any[];
+        }[];
+      }
+    | {
+        name: string;
+        description?: string;
+        component?: string;
+      };
+} = {
   basic: {
     name: "Basic App Router Structure",
     description: "A simple Next.js app with basic routing",
