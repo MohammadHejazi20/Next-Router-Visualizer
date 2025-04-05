@@ -158,8 +158,8 @@ export function ImportStructure() {
           <code className="bg-[#121212] px-1.5 py-0.5 rounded text-[#4A90E2]">
             uuidgen
           </code>{" "}
-          command, which is available on most Unix-like systems. If you're on
-          macOS, you may need to install it with{" "}
+          command, which is available on most Unix-like systems. If you&apos;re
+          on macOS, you may need to install it with{" "}
           <code className="bg-[#121212] px-1.5 py-0.5 rounded text-[#4A90E2]">
             brew install util-linux
           </code>

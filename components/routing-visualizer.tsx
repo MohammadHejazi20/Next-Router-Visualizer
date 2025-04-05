@@ -5,11 +5,10 @@ import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { exampleStructures } from "@/lib/example-structures";
-import { ArrowLeft, FileJson, FileText, Lock, Sparkles } from "lucide-react";
+import { ArrowLeft, FileJson, FileText, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { ImportStructure } from "./import-structure";
-import Show from "./show";
 
 export function RoutingVisualizer() {
   const [selectedStructure, setSelectedStructure] = useState<

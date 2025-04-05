@@ -122,7 +122,7 @@ export function HowItWorksSection() {
                 </h4>
                 <p className="text-xs text-[#A0A0A0]">
                   Provides instructions and a shell script for generating a JSON
-                  file from a user's Next.js project.
+                  file from a user&apos;s Next.js project.
                 </p>
               </div>
               <div className="bg-[#2A2A2A] p-4 rounded-lg border border-[#333333]">

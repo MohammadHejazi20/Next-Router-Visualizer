@@ -306,7 +306,7 @@ export default function RoutingDiagram({ initialNodes }: RoutingDiagramProps) {
             Next.js App Router Structure
           </h2>
           <p className="text-sm text-muted-foreground mt-1">
-            Visualize your application's routing hierarchy
+            Visualize your application&apos;s routing hierarchy
           </p>
         </div>
         <Button
