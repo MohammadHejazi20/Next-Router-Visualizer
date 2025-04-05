@@ -10,7 +10,7 @@ export const exampleStructures: {
           name: string;
           route?: string;
           status?: "active" | "group";
-          children?: any[];
+          children?: Node[];
         }[];
       }
     | {

@@ -37,8 +37,8 @@ export function RoutingVisualizer() {
               Next.js App Router Structure
             </h1>
             <p className="text-[#A0A0A0] text-sm md:text-base">
-              Visualize your application's routing hierarchy based on the file
-              system
+              Visualize your application&apos;s routing hierarchy based on the
+              file system
             </p>
           </div>
           <Link href={"/documentation"}>
