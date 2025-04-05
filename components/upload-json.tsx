@@ -1,39 +1,39 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Upload } from 'lucide-react'
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Upload } from "lucide-react";
 
 interface UploadJsonProps {
-  onUpload: (data: any) => void
+  onUpload: (data: Record<string, unknown>) => void;
 }
 
 export function UploadJson({ onUpload }: UploadJsonProps) {
-  const [file, setFile] = useState<File | null>(null)
+  const [file, setFile] = useState<File | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files?.[0]
+    const selectedFile = event.target.files?.[0];
     if (selectedFile) {
-      setFile(selectedFile)
+      setFile(selectedFile);
     }
-  }
+  };
 
   const handleUpload = () => {
     if (file) {
-      const reader = new FileReader()
+      const reader = new FileReader();
       reader.onload = (e) => {
         try {
-          const json = JSON.parse(e.target?.result as string)
-          onUpload(json)
+          const json = JSON.parse(e.target?.result as string);
+          onUpload(json);
         } catch (error) {
-          console.error('Error parsing JSON:', error)
-          alert('Invalid JSON file. Please try again.')
+          console.error("Error parsing JSON:", error);
+          alert("Invalid JSON file. Please try again.");
         }
-      }
-      reader.readAsText(file)
+      };
+      reader.readAsText(file);
     }
-  }
+  };
 
   return (
     <div className="flex items-center gap-4">
@@ -48,6 +48,5 @@ export function UploadJson({ onUpload }: UploadJsonProps) {
         Upload Structure
       </Button>
     </div>
-  )
+  );
 }
-

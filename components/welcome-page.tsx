@@ -74,7 +74,11 @@ export function WelcomePage() {
               Back to Examples
             </Button>
             <RoutingDiagram
-              initialNodes={exampleStructures[selectedStructure].nodes}
+              initialNodes={
+                "nodes" in exampleStructures[selectedStructure]
+                  ? exampleStructures[selectedStructure].nodes
+                  : []
+              }
             />
           </>
         )}

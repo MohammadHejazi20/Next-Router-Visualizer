@@ -16,8 +16,8 @@ export function TechnicalImplementationSection() {
               State Management
             </h3>
             <p className="text-sm text-[#E0E0E0] mb-4">
-              The app uses React's useState hooks to manage various aspects of
-              the application state:
+              The app uses React&apos;s useState hooks to manage various aspects
+              of the application state:
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-[#2A2A2A] p-3 rounded-lg">

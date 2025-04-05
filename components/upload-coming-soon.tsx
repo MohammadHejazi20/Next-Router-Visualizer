@@ -30,7 +30,7 @@ function UploadComingSoon() {
 
         <div className="mt-4 ml-9">
           <p className="text-sm text-[#A0A0A0]">
-            Soon you'll be able to directly upload your generated{" "}
+            Soon you&apos;ll be able to directly upload your generated{" "}
             <code className="bg-[#1E1E1E] px-1.5 py-0.5 rounded text-[#4A90E2]">
               app-structure.json
             </code>{" "}

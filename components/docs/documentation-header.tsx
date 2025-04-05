@@ -21,7 +21,7 @@ export function DocumentationHeader() {
         Next.js App Router Structure Visualizer Documentation
       </h1>
       <p className="text-[#A0A0A0] text-sm md:text-base mt-2">
-        Learn how this project works under the hood and how it's structured
+        Learn how this project works under the hood and how it&apos;s structured
       </p>
     </header>
   );
