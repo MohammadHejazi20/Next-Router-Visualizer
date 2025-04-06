@@ -17,9 +17,17 @@ export function RoutingVisualizer() {
 
   const renderSelectedContent = () => {
     if (!selectedStructure) return null;
-    const structure = exampleStructures[selectedStructure];
 
-    if (structure.component === exampleStructures.import.component) {
+    const structure = exampleStructures[selectedStructure];
+    if (!structure || !("name" in structure)) {
+      console.error("Invalid structure selected:", selectedStructure);
+      return null;
+    }
+
+    if (
+      "component" in structure &&
+      structure.component === exampleStructures.import.component
+    ) {
       return <ImportStructure />;
     } else if ("nodes" in structure) {
       return <FileRouteVisualizer structure={structure.nodes} />;

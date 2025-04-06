@@ -1,17 +1,12 @@
+import { Node } from "./nodeUtils";
+
 export const exampleStructures: {
   [key: string]:
     | {
         name: string;
         description?: string;
         component?: string;
-        nodes: {
-          id: string;
-          type: "folder" | "file" | "page" | "group";
-          name: string;
-          route?: string;
-          status?: "active" | "group";
-          children?: Node[];
-        }[];
+        nodes: Node[];
       }
     | {
         name: string;
