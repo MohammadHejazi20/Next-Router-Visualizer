@@ -100,8 +100,8 @@ export function DataStructureSection() {
                   <span className="font-medium">group</span>
                 </div>
                 <p className="text-xs text-[#A0A0A0]">
-                  Represents route groups with (parentheses) that don't affect
-                  URL paths
+                  Represents route groups with (parentheses) that don&apos;t
+                  affect URL paths
                 </p>
               </div>
             </div>

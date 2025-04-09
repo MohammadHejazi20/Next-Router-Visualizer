@@ -5,7 +5,6 @@ import { DocumentationHeader } from "./docs/documentation-header";
 import { ProjectOverviewSection } from "./docs/project-overview-section";
 import { DataStructureSection } from "./docs/data-structure-section";
 import { HowItWorksSection } from "./docs/how-it-works-section";
-import { TechnicalImplementationSection } from "./docs/technical-implementation-section";
 
 export function DocumentationPage() {
   return (
@@ -17,7 +16,6 @@ export function DocumentationPage() {
           <ProjectOverviewSection />
           <DataStructureSection />
           <HowItWorksSection />
-          <TechnicalImplementationSection />
         </div>
       </div>
 

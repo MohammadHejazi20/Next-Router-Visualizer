@@ -41,6 +41,7 @@ const Show: React.FC<ShowProps> & {
  * Conditionally renders children when isTrue is true
  */
 Show.When = ({ isTrue, children }: WhenProps) => (isTrue ? children : null);
+Show.When.displayName = "Show.When";
 
 /**
  * Renders either the render prop or children when shown
