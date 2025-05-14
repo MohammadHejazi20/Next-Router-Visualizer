@@ -8,12 +8,26 @@
       "name": "app",
       "children": [
         {
-          "id": "5DD8CC20-AC41-49AC-920A-92438DAD2A9C",
+          "id": "94E7320B-8EE7-465B-99A7-92354B41D493",
+          "type": "folder",
+          "name": "documentation",
+          "children": [
+            {
+              "id": "E249D7DF-7FF3-4AB3-8ED0-C17BFDAC92C5",
+              "type": "page",
+              "name": "page.tsx",
+              "route": "/documentation",
+              "status": "active"
+            }
+          ]
+        },
+        {
+          "id": "CC3F8595-6DC7-41F9-B111-78C0D411EC06",
           "type": "file",
           "name": "layout.tsx"
         },
         {
-          "id": "19C2DA55-1E8B-4DC0-A44F-3B7FB4178DE9",
+          "id": "203E905F-59B4-4F6E-8B2B-D5C2F388665B",
           "type": "page",
           "name": "page.tsx",
           "route": "",
