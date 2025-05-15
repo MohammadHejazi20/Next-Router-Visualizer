@@ -14,6 +14,11 @@ export const exampleStructures: {
         component?: string;
       };
 } = {
+  import: {
+    name: "Import Your Own Structure",
+    description: "Generate and import your Next.js app structure",
+    component: "ImportStructure",
+  },
   basic: {
     name: "Basic App Router Structure",
     description: "A simple Next.js app with basic routing",
@@ -295,10 +300,5 @@ export const exampleStructures: {
         ],
       },
     ],
-  },
-  import: {
-    name: "Import Your Own Structure",
-    description: "Generate and import your Next.js app structure",
-    component: "ImportStructure",
   },
 };
